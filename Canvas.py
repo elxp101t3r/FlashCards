@@ -7,7 +7,7 @@ from PIL import ImageTk, Image
 class CardCanvas:
     def __init__(self):
         self.cnv = Canvas(width=600, height=400, bg='white')
-        self.cnv.grid(column=1, row=1, padx=35)
+        self.cnv.grid(column=0, row=0, columnspan=2, padx=35)
         self.cnv.create_rectangle((100, 100), (500, 500), fill='green')
         self.cnv.create_text(
             (300, 200),

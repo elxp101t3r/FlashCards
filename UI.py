@@ -8,7 +8,7 @@ class Win(Tk):
     def __init__(self):
         super(Win, self).__init__()
         self.title('Flashy')
-        self.geometry('800x526')
+        self.geometry('670x550')
         self.cards = CardCanvas()
         self.next = NextBtn()
         self.previous = PreviousBtn()
