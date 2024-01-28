@@ -17,7 +17,7 @@ class Win(Tk):
         self.geometry('670x550')
         self.cnv = Canvas(width=600, height=400, bg='white')
         self.cnv.grid(column=0, row=0, columnspan=2, padx=35)
-        self.cnv.create_rectangle((100, 100), (500, 500), fill='green')
+        self.front = self.cnv.create_rectangle((100, 100), (500, 500), fill='green')
         self.card_title = self.cnv.create_text(
             (300, 200),
             text="",
@@ -47,6 +47,7 @@ class Win(Tk):
     
     def flip(self):
         global current_card
-        self.cnv.itemconfig(self.card_title, text='English')
-        self.cnv.itemconfig(self.card_word, text=current_card['English'])
+        self.cnv.itemconfig(self.card_title, text='English', fill='black')
+        self.cnv.itemconfig(self.card_word, text=current_card['English'], fill='black')
+        self.cnv.itemconfig(self.front, fill='#d4bf37')
         
