@@ -19,13 +19,13 @@ class Win(Tk):
         self.cnv.create_rectangle((100, 100), (500, 500), fill='green')
         self.card_title = self.cnv.create_text(
             (300, 200),
-            text="Front:",
+            text="",
             font=(('Arial', 18, 'italic')),
             fill='white'
         )
         self.card_word = self.cnv.create_text(
             (300, 250),
-            text="Q1",
+            text="",
             font=("Arial", 20, "bold"),
             fill='white'
         )
