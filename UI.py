@@ -7,6 +7,7 @@ from random import choice
 
 data = pd.read_csv('./data/se_wordlist.csv')
 learn = data.to_dict(orient='records')
+current_card = {}
 
 
 class Win(Tk):
@@ -33,12 +34,19 @@ class Win(Tk):
         self.known_btn.grid(column=1, row=2, pady=20)
         self.unknown_btn = Button(text='Unknown', bootstyle='danger-outline', command=self.next_card)
         self.unknown_btn.grid(column=0, row=2, pady=20)
-        
+        self.after(3000, func=self.flip)
         self.next_card()
         self.mainloop()
         
         
     def next_card(self):
-        self.current_card = choice(learn)
+        global current_card
+        current_card = choice(learn)
         self.cnv.itemconfig(self.card_title, text='Sweedish')
-        self.cnv.itemconfig(self.card_word, text=self.current_card['Sweedish'])
+        self.cnv.itemconfig(self.card_word, text=current_card['Sweedish'])
+    
+    def flip(self):
+        global current_card
+        self.cnv.itemconfig(self.card_title, text='English')
+        self.cnv.itemconfig(self.card_word, text=current_card['English'])
+        
