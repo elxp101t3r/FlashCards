@@ -4,10 +4,16 @@ from ttkbootstrap.constants import *
 import pandas as pd
 from random import choice
 
-
-data = pd.read_csv('./data/se_wordlist.csv')
-learn = data.to_dict(orient='records')
 current_card = {}
+learn = {}
+
+try:
+    data = pd.read_csv('./data/learn_words.csv')
+except FileNotFoundError:
+    original_data = pd.read_csv('./data/se_wordlist.csv')
+    learn = original_data.to_dict(orient='records')
+else:
+    learn = data.to_dict(orient='records')
 
 
 class Win(Tk):
@@ -30,7 +36,7 @@ class Win(Tk):
             font=("Arial", 20, "bold"),
             fill='white'
         )
-        self.known_btn = Button(text='Known', bootstyle='success-outline', command=self.next_card)
+        self.known_btn = Button(text='Known', bootstyle='success-outline', command=self.known_card)
         self.known_btn.grid(column=1, row=2, pady=20)
         self.unknown_btn = Button(text='Unknown', bootstyle='danger-outline', command=self.next_card)
         self.unknown_btn.grid(column=0, row=2, pady=20)
@@ -48,9 +54,17 @@ class Win(Tk):
         self.cnv.itemconfig(self.front, fill='green')
         self.timer = self.after(3000, func=self.flip)
     
+    
     def flip(self):
         global current_card
         self.cnv.itemconfig(self.card_title, text='English', fill='black')
         self.cnv.itemconfig(self.card_word, text=current_card['English'], fill='black')
-        self.cnv.itemconfig(self.front, fill='#d4bf37')
+        self.cnv.itemconfig(self.front, fill='#d4bf37')      
+
+
+    def known_card(self):
+        learn.remove(current_card)
+        self.data = pd.DataFrame(learn)
+        self.data.to_csv('./data/learn_words.csv', index=False)
+        self.next_card()        
         
