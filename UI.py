@@ -34,16 +34,19 @@ class Win(Tk):
         self.known_btn.grid(column=1, row=2, pady=20)
         self.unknown_btn = Button(text='Unknown', bootstyle='danger-outline', command=self.next_card)
         self.unknown_btn.grid(column=0, row=2, pady=20)
-        self.after(3000, func=self.flip)
+        self.timer = self.after(3000, func=self.flip)
         self.next_card()
         self.mainloop()
         
         
     def next_card(self):
         global current_card
+        self.after_cancel(self.timer)
         current_card = choice(learn)
-        self.cnv.itemconfig(self.card_title, text='Sweedish')
-        self.cnv.itemconfig(self.card_word, text=current_card['Sweedish'])
+        self.cnv.itemconfig(self.card_title, text='Sweedish', fill='white')
+        self.cnv.itemconfig(self.card_word, text=current_card['Sweedish'], fill='white')
+        self.cnv.itemconfig(self.front, fill='green')
+        self.timer = self.after(3000, func=self.flip)
     
     def flip(self):
         global current_card
