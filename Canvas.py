@@ -1,7 +1,6 @@
 from tkinter import *
 from ttkbootstrap import *
 from ttkbootstrap.constants import *
-from PIL import ImageTk, Image
 
 
 class CardCanvas:
