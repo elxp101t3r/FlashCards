@@ -1,7 +1,7 @@
 from tkinter import *
 from ttkbootstrap import *
 from ttkbootstrap.constants import *
-from Buttons import NextBtn, PreviousBtn
+from Buttons import KnownBtn, UnknownBtn
 from Canvas import CardCanvas
 
 class Win(Tk):
@@ -10,6 +10,6 @@ class Win(Tk):
         self.title('Flashy')
         self.geometry('670x550')
         self.cards = CardCanvas()
-        self.next = NextBtn()
-        self.previous = PreviousBtn()
+        self.known_button = KnownBtn()
+        self.unknown_button = UnknownBtn()
         self.mainloop()

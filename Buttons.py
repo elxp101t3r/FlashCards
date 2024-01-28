@@ -1,15 +1,27 @@
 from tkinter import *
 from ttkbootstrap import *
 from ttkbootstrap.constants import *
+import pandas as pd
 
 
-class NextBtn:
+data = pd.read_csv('./data/se_wordlist.csv')
+learn = data.to_dict(orient='records')
+print(learn)
+
+
+def next_card():
+    pass
+    
+  
+    
+
+class UnknownBtn:
     def __init__(self):
-        self.next_btn = Button(text='Next', bootstyle='outline')
-        self.next_btn.grid(column=0, row=2, pady=20)
+        self.unknown_btn = Button(text='Unknown', bootstyle='danger-outline', command=next_card)
+        self.unknown_btn.grid(column=0, row=2, pady=20)
         
         
-class PreviousBtn:
+class KnownBtn:
     def __init__(self):
-        self.previous_btn = Button(text='Previous', bootstyle='Danger-outline')
-        self.previous_btn.grid(column=1, row=2, pady=20)
+        self.known_btn = Button(text='Known', bootstyle='success-outline', command=next_card)
+        self.known_btn.grid(column=1, row=2, pady=20)
